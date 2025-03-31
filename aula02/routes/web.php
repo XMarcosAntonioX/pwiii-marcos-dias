@@ -6,20 +6,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/users/{param}', function ($param) {
-    return $param;
+Route::get('/home', function () {
+    return view('home');
 });
 
-Route::prefix('usuarios')->group(function(){
-    Route::get('/edit', function() {
+Route::get('/users/{params}/{params2}', function ($params, $params2) {
+    return $params . ' ' . $params2;
+});
+
+Route::prefix('usuarios')->group(function() {
+    Route::get('/edit', function(){
         return 'edit';
     });
-    Route::get('/delete', function() {
-        return 'delete';
+
+    Route::get('/delete', function(){
+            return 'delete';
     });
-});
 
-Route::get('dados-de-usuarios/{users}', function(\App\Models\User $user){
- return $user;
+    });
 
+Route::get('/dados-de-usuarios/{user}', function(\App\Models\User $user){
+    return $user;
 });
